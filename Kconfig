@@ -1,0 +1,21 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+config LUA_LUV_MODULE
+	bool "Lua Luv module"
+	default n
+	depends on INTERPRETERS_LUA && LIBUV
+	---help---
+		Bare libuv bindings for Lua
+
+if LUA_LUV_MODULE
+
+config LUA_LUV_VERSION
+	string "Luv version"
+	default "1.43.0-0"
+	---help---
+		Luv release version to fetch and build.
+
+endif # LUA_LUV_MODULE
