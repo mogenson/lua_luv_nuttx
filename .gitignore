@@ -5,3 +5,5 @@
 .dirlinks
 .kconfig
 Make.dep
+luv-*.tar.gz
+luv-*/
