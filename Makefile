@@ -29,6 +29,12 @@ LUV_URL_BASE = https://github.com/luvit/luv/releases/download/
 LUV_URL      = $(LUV_URL_BASE)/$(LUV_VERSION)/$(LUV_TARBALL)
 LUV_SRC      = $(LUV_UNPACK)$(DELIM)src
 
+CSRCS = $(LUV_SRC)$(DELIM)luv.c
+
+# getprotoby functions not implemented in NuttX libc
+CFLAGS += -D'getprotobynumber(num)=NULL'
+CFLAGS += -D'getprotobyname(string)=NULL'
+
 # Luv download and unpack
 
 $(LUV_TARBALL):
@@ -50,8 +56,6 @@ distclean::
 # module's luaopen function.
 
 LUAMODNAME = luv
-
-CSRCS = $(LUV_SRC)$(DELIM)luv.c
 
 include $(APPDIR)/interpreters/lua/Module.mk
 
